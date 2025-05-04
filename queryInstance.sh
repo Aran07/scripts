@@ -62,9 +62,9 @@ if ! aws sts get-caller-identity &> /dev/null ; then
 fi
 
 # Check if instance exists
-INSTANCE_AVAILABLE=$(aws ec2 describe-instances --instance-id $INSTANCE_ID --query 'Reservations[*].Instances[*].InstanceId' --no-cli-pager --output text)
+INSTANCE_AVAILABLE=$(aws ec2 describe-instances --query "Reservations[*].Instances[?InstanceId==\`$INSTANCE_ID\`].InstanceId" --no-cli-pager --output text)
 if [ -z $INSTANCE_AVAILABLE ]; then
-  LIST_ALL_INSTANCES=$(aws ec2 describe-instances --no-cli-pager --output text --query 'Reservations[*].Instances[*].InstanceId')
+  LIST_ALL_INSTANCES=$(aws ec2 describe-instances --no-cli-pager --output text --query 'Reservations[*].Instances[].InstanceId')
   echo "Unable to find instance $INSTANCE_ID."
   echo
   echo "Here is a list of instances found: "
@@ -79,7 +79,7 @@ fi
 
 # Get Requested information"
 INSTANCE_DETAIL=$(aws ec2 describe-instances --instance-id $INSTANCE_ID --no-cli-pager --output json --query 'Reservations[*].Instances[]')
-if [ -z $INSTANCE_DETAIL ]; then
+if [ -z "${INSTANCE_DETAIL}" ]; then
   echo "Error: Unable to fetch instance detail for $INSTANCE_DETAIL"
 fi
 

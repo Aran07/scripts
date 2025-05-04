@@ -16,7 +16,10 @@ This Bash script fetches metadata for a given AWS EC2 instance in JSON format. I
 Run the script with the following command:
 
 ```bash
-./queryInstance.sh <INSTANCE_ID> [METADATA]
+./queryInstance.sh <INSTANCE_ID> [DATA_KEY]
+```
+```bash
+./queryInstance.sh i-0xxxxxxxxxxxx PrivateDnsName
 ```
 
 ## References
