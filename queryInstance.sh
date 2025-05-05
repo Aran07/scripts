@@ -87,7 +87,7 @@ if [ "$FILTER" == "true" ]; then
   echo "Filtering output as requested...."
   OUTPUT=$(echo "${INSTANCE_DETAIL}" | jq ".. | objects | with_entries(select(.key==\"${METADATA}\")) | select(. != {})")
   
-  if [ -z "${OUTPUT}"]; then
+  if [ -z "${OUTPUT}" ]; then
      OUTPUT="Unable to locate $METADATA data key. Check https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html & https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Instance.html for supported data keys."
   fi
 
