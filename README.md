@@ -5,7 +5,7 @@ This Bash script fetches metadata for a given AWS EC2 instance in JSON format. I
 
 ## Prerequisites
 - [AWS CLI installed and configured](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-  - The following environment variables are available in the shell context:
+  - The following environment variables are configured in the shell context:
     - AWS_PROFILE
     - AWS_REGION
 - Necessary IAM permissions to query instance metadata  
